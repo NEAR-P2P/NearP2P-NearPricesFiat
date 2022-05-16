@@ -4,65 +4,30 @@ from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
 import json
 import pandas as pd
 import dboperations
+import ars
 
-listSymbol = ["quote.ARS.price"
-            , "quote.CAD.price"
-            , "quote.CLP.price"
-            , "quote.COP.price"
-            , "quote.CRC.price"
-            , "quote.CUP.price"
-            , "quote.DOP.price"
-            , "quote.EUR.price"
-            , "quote.GTQ.price"
-            , "quote.HNL.price"
-            , "quote.INR.price"  
-            , "quote.MXN.price"
-            , "quote.MYR.price"
-            , "quote.PEN.price"
-            , "quote.PHP.price"
-            , "quote.RUB.price"
-            , "quote.SGD.price"
-            , "quote.TRY.price"
+listSymbol = ["quote.EUR.price"
             , "quote.USD.price"
-            , "quote.UYU.price"
+            , "quote.RUB.price"
             , "quote.VES.price"
-            , "quote.VND.price"
             ]
 
 def symbol_name(pos):
-      dict = {1: "ARS"
-               , 2:  "CAD"
-               , 3:  "CLP"
-               , 4:  "COP"
-               , 5:  "CRC"
-               , 6:  "CUP"
-               , 7:  "DOP"
-               , 8: "EUR"
-               , 9: "GTQ"
-               , 10: "HNL"
-               , 11: "INR"           
-               , 12: "MXN"
-               , 13: "MYR"
-               , 14: "PEN"
-               , 15: "PHP"
-               , 16: "RUB"
-               , 17: "SGD"
-               , 18: "TRY" 
-               , 19: "USD"
-               , 20: "UYU"
-               , 21: "VES"
-               , 22: "VND"}
+      dict = {   1: "EUR"        
+               , 2: "USD"
+               , 3: "RUB"
+               , 4: "VES"}
       return dict.get(pos)     
 
 url = 'https://pro-api.coinmarketcap.com/v2/tools/price-conversion'
 parameters = {
   'symbol':'NEAR',
    'amount':'1',
-   'convert': 'VES,USD,TRY,INR,MXN,ARS,CLP,COP,CUP,DOP,PHP,UYU,VND,RUB,SGD,PEN,MYR,HNL,GTQ,EUR,CRC,CAD'
+   'convert': 'EUR,USD,RUB,VES'
 }
 headers = {
   'Accepts': 'application/json',
-  'X-CMC_PRO_API_KEY': 'xxxx',
+  'X-CMC_PRO_API_KEY': '2f48c701-7b9d-485e-8bee-ccd6d981111f',
 }
 
 session = Session()
@@ -81,3 +46,6 @@ try:
       #print(df[x][0])
 except (ConnectionError, Timeout, TooManyRedirects) as e:
   print(e)
+
+#Actualizar el precio de la moneda ars
+ars.exec()
