@@ -14,7 +14,7 @@ def exec():
    #Data from database
    url1 = "https://nearp2p.com:3070/api/sendmailp2p/get-price"
    # defining a params dict for the parameters to be sent to the API
-   r1 = requests.post(url = url1, json = {"fiat": "USD"})
+   r1 = requests.post(url = url1, json = {"fiat": "USD", "crypto": "NEAR"})
    data1 = r1.json()
    #print(data1[0]['value'])
    result = float(data['venta']) * float(data1[0]['value'])
