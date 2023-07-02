@@ -1,7 +1,7 @@
 import psycopg2
 
 def conection():
-    conn = psycopg2.connect(host="localhost", database="p2p", user="p2p", password="p42fUEoUpfAp2b7QsibgIT4PCWrp4wCW")
+    conn = psycopg2.connect(host="134.209.45.101", database="p2p", user="p2p", password="p42fUEoUpfAp2b7QsibgIT4PCWrp4wCW")
     return conn
 
 # Store procedure para actualizar datos
