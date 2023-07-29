@@ -68,5 +68,11 @@ def exec():
       rars = requests.get(urlars)
       ars_price = float(rars.json()["venta"])
       dboperations.act_prices('USDT', 'ARS', ars_price)
+
+      #api from api.exchangerate.host
+      urlcop = "https://api.exchangerate.host/latest?base=USD&symbols=COP"
+      rcop = requests.get(urlcop)
+      cop_price = float(rcop.json()["rates"]["COP"])
+      dboperations.act_prices('USDT', 'COP', cop_price)
    
-   print('Tiempo de ejecución USDT FIAT ' + str(datetime.now() - start)) 
+   print('Tiempo de ejecución USDT FIAT ' + str(datetime.now() - start))
