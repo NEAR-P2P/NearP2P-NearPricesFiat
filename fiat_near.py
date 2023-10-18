@@ -2,7 +2,7 @@ import requests
 import json
 from datetime import datetime
 import dboperations
-from pyDolarVenezuela import price
+from scraping import price
 
 # def exec():
 #     url = 'https://pro-api.coinmarketcap.com/v2/tools/price-conversion'
@@ -42,9 +42,9 @@ def exec():
    url = "https://api.coingecko.com/api/v3/coins/near/tickers/"
    r = requests.get(url)
    
-   #api from dolar Venezuela
+   #api from dolar scraping
    precios = price()
-   ves_price = float(precios['$enparalelovzla'].split(' ')[1])
+   ves_price = precios
    
    #api dolar blue
    # api from dolar today
@@ -66,4 +66,4 @@ def exec():
          dboperations.act_prices('NEAR', 'USD', near_price)
    print('Tiempo de ejecución NEAR FIAT ' + str(datetime.now() - start))
 
-# exec()   
+exec()

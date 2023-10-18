@@ -2,7 +2,7 @@ import requests
 import json
 from datetime import datetime
 import dboperations
-from pyDolarVenezuela import price
+from scraping import price
 
 # listSymbol = ["quote.VES.price"
 #             , "quote.USD.price"
@@ -60,7 +60,7 @@ def exec():
 
       #api from dolar Venezuela
       precios = price()
-      ves_price = float(precios['$enparalelovzla'].split(' ')[1])
+      ves_price = precios
       dboperations.act_prices('USDT', 'VES', ves_price)
 
       #api from vercel
@@ -70,9 +70,9 @@ def exec():
       dboperations.act_prices('USDT', 'ARS', ars_price)
 
       #api from api.exchangerate.host
-      urlcop = "https://api.exchangerate.host/latest?base=USD&symbols=COP"
-      rcop = requests.get(urlcop)
-      cop_price = float(rcop.json()["rates"]["COP"])
-      dboperations.act_prices('USDT', 'COP', cop_price)
+      # urlcop = "https://api.exchangerate.host/latest?base=USD&symbols=COP"
+      # rcop = requests.get(urlcop)
+      # cop_price = float(rcop.json()["rates"]["COP"])
+      # dboperations.act_prices('USDT', 'COP', cop_price)
    
    print('Tiempo de ejecución USDT FIAT ' + str(datetime.now() - start))
