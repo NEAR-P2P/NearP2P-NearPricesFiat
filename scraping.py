@@ -1,6 +1,7 @@
 import urllib.request
 from bs4 import BeautifulSoup
 from datetime import datetime
+import pytz
 
 def getDay(day):
     # Get the current date and time
@@ -33,14 +34,19 @@ def price():
     # Find the elements with class 'wp-block-table is-style-stripes'
     elements = soup.find_all(class_='wp-block-table is-style-stripes')
 
-    # Print the elements
-    # Get the current date and time
-    now = datetime.now()
+    # Get the current date and time in UTC
+    now_utc = datetime.utcnow()
+
+    # Create a timezone object for UTC-4
+    utc_minus_4 = pytz.timezone('America/Caracas')
+
+    # Convert the UTC time to UTC-4 time
+    now_utc_minus_4 = now_utc.astimezone(utc_minus_4)
 
     # Format the day of the week in Spanish
-    day_of_week = now.strftime("%A")
+    day_of_week = now_utc_minus_4.strftime("%A")
 
-    number_of_week = now.strftime("%d")
+    number_of_week = now_utc_minus_4.strftime("%d")
 
     price = 0
 
@@ -56,4 +62,4 @@ def price():
     return float(price)
 
 
-# print(price())
+print(price())

@@ -66,4 +66,4 @@ def exec():
          dboperations.act_prices('NEAR', 'USD', near_price)
    print('Tiempo de ejecución NEAR FIAT ' + str(datetime.now() - start))
 
-exec()
+# exec()

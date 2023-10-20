@@ -62,7 +62,7 @@ def exec():
       precios = price()
       ves_price = precios
       dboperations.act_prices('USDT', 'VES', ves_price)
-
+      # print(ves_price)
       #api from vercel
       urlars = "https://dolar-api-argentina.vercel.app/v1/dolares/blue"
       rars = requests.get(urlars)
