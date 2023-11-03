@@ -53,7 +53,6 @@ def price():
     for element in elements:
         # Find the strong element with the value "Mie 18"
         strong_element = element.find('strong', string=getDay(day_of_week) + ' ' + number_of_week)
-        print(getDay(day_of_week) + ' ' + number_of_week)
         if strong_element:
             # Find the td element that is next to the strong element
             td_element = strong_element.find_next('td')
