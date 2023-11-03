@@ -1,6 +1,6 @@
 import urllib.request
 from bs4 import BeautifulSoup
-from datetime import datetime
+from datetime import datetime, timedelta
 import pytz
 
 def getDay(day):
@@ -46,13 +46,14 @@ def price():
     # Format the day of the week in Spanish
     day_of_week = now_utc_minus_4.strftime("%A")
 
-    number_of_week = now_utc_minus_4.strftime("%d")
+    number_of_week = now_utc_minus_4.strftime("%-d")
 
     price = 0
 
     for element in elements:
         # Find the strong element with the value "Mie 18"
         strong_element = element.find('strong', string=getDay(day_of_week) + ' ' + number_of_week)
+        print(getDay(day_of_week) + ' ' + number_of_week)
         if strong_element:
             # Find the td element that is next to the strong element
             td_element = strong_element.find_next('td')
