@@ -10,7 +10,11 @@ def act_prices_endpoint():
 
     # Call the act_prices function
     result = dboperations.act_dolar(pamount)
-    return str(result), 200
+
+    # Create a message
+    message = f"Actualización de precios exitosa"
+
+    return message, 200
 
 if __name__ == '__main__':
     app.run(debug=True)
