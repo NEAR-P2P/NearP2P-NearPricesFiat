@@ -21,3 +21,21 @@ def act_prices(pcrypto, pfiat, pamount):
         if conn is not None:
             conn.close()  # Cerrando conección
     return
+
+# Store procedure para actualizar datos
+def act_dolar(pamount):
+    conn = conection()
+    try:
+     # create a cursor object for execution
+     cursor = conn.cursor()
+     cursor.execute("BEGIN")
+     cursor.callproc('act_dolar', (pamount, ))  # Llamado de procedimiento almacenado en postgres
+     cursor.execute("COMMIT")
+     cursor.close  # Cerrar cursor
+     # Llamado de store procedure para actualizar tabla t_historical
+    except (psycopg2.DatabaseError) as error:
+          print(error)
+    finally:
+        if conn is not None:
+            conn.close()  # Cerrando conección
+    return    

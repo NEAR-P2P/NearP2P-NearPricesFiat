@@ -2,7 +2,7 @@ import requests
 import json
 from datetime import datetime
 import dboperations
-from scraping import price
+# from scraping import price
 
 # def exec():
 #     url = 'https://pro-api.coinmarketcap.com/v2/tools/price-conversion'
@@ -43,8 +43,8 @@ def exec():
    r = requests.get(url)
    
    #api from dolar scraping
-   precios = price()
-   ves_price = precios
+   # precios = price()
+   # ves_price = precios
    
    #api dolar blue
    # api from dolar today
@@ -53,17 +53,17 @@ def exec():
    ars_price = float(rves.json()["venta"])
 
    # print(r.status_code)
-   if r.status_code == 200:
-         near_price = float(r.json()["tickers"][0]["last"])
-         ves_near = near_price * ves_price
-         ars_near = near_price * ars_price
-         # print(ves_near) 
-         # #ves  
-         dboperations.act_prices('NEAR', 'VES', ves_near)
-         # #ars
-         dboperations.act_prices('NEAR', 'ARS', ars_near)
-         #
-         dboperations.act_prices('NEAR', 'USD', near_price)
+
+   near_price = float(r.json()["tickers"][0]["last"])
+   # ves_near = near_price * ves_price
+   ars_near = near_price * ars_price
+   # print(ves_near) 
+   # #ves  
+   # dboperations.act_prices('NEAR', 'VES', ves_near)
+   # #ars
+   dboperations.act_prices('NEAR', 'ARS', ars_near)
+   #
+   dboperations.act_prices('NEAR', 'USD', near_price)
    print('Tiempo de ejecución NEAR FIAT ' + str(datetime.now() - start))
 
 # exec()

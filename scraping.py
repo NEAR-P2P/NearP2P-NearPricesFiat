@@ -10,7 +10,7 @@ def getDay(day):
     elif day == 'Tuesday':
         return 'Mar'
     elif day == 'Wednesday':
-        return 'Mie'
+        return 'Mier'
     elif day == 'Thursday':
         return 'Jue'
     elif day == 'Friday': 
@@ -22,7 +22,7 @@ def getDay(day):
 
 def price():
     # URL to scrape
-    url = "https://www.ivenezuela.travel/venezuela/dolar/precio-dolar-venezuela-dolartoday-monitor-oficial-bcv-hoy-tipo-de-cambio/"
+    # url = "https://www.ivenezuela.travel/venezuela/dolar/precio-dolar-venezuela-dolartoday-monitor-oficial-bcv-hoy-tipo-de-cambio/"
 
     # Send a request to the website and get the HTML content
     response = urllib.request.urlopen(url)
@@ -44,14 +44,15 @@ def price():
     now_utc_minus_4 = now_utc.astimezone(utc_minus_4)
 
     # Format the day of the week in Spanish
-    day_of_week = now_utc_minus_4.strftime("%A")
+    day_of_week =  now_utc_minus_4.strftime("%A")
 
-    number_of_week = now_utc_minus_4.strftime("%-d")
+    number_of_week =  now_utc_minus_4.strftime("%-d")
 
     price = 0
 
     for element in elements:
         # Find the strong element with the value "Mie 18"
+        print(getDay(day_of_week) + ' ' + number_of_week)
         strong_element = element.find('strong', string=getDay(day_of_week) + ' ' + number_of_week)
         if strong_element:
             # Find the td element that is next to the strong element

@@ -2,7 +2,7 @@ import requests
 import json
 from datetime import datetime
 import dboperations
-from scraping import price
+# from scraping import price
 
 # listSymbol = ["quote.VES.price"
 #             , "quote.USD.price"
@@ -49,25 +49,24 @@ def exec():
    start = datetime.now()
    index = 0
    #api from Coingeko
-   url = "https://api.coingecko.com/api/v3/simple/price?ids=tether&vs_currencies=usd"
-   r = requests.get(url)
+   # url = "https://api.coingecko.com/api/v3/simple/price?ids=tether&vs_currencies=usd"
+   # r = requests.get(url)
 
-   if r.status_code == 200:
 
-      usd_price = float(r.json()["tether"]["usd"])
-      #
-      dboperations.act_prices('USDT', 'USD', usd_price)
 
-      #api from dolar Venezuela
-      precios = price()
-      ves_price = precios
-      dboperations.act_prices('USDT', 'VES', ves_price)
-      # print(ves_price)
-      #api from vercel
-      urlars = "https://dolar-api-argentina.vercel.app/v1/dolares/blue"
-      rars = requests.get(urlars)
-      ars_price = float(rars.json()["venta"])
-      dboperations.act_prices('USDT', 'ARS', ars_price)
+   # usd_price = float(r.json()["tether"]["usd"])
+   #
+   #dboperations.act_prices('USDT', 'USD', usd_price)
+   #api from dolar Venezuela
+   # precios = price()
+   # ves_price = precios
+   # dboperations.act_prices('USDT', 'VES', ves_price)
+   # print(ves_price)
+   #api from vercel
+   urlars = "https://dolar-api-argentina.vercel.app/v1/dolares/blue"
+   rars = requests.get(urlars)
+   ars_price = float(rars.json()["venta"])
+   dboperations.act_prices('USDT', 'ARS', ars_price)
 
       #api from api.exchangerate.host
       # urlcop = "https://api.exchangerate.host/latest?base=USD&symbols=COP"
