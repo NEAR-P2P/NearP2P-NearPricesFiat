@@ -6,12 +6,12 @@ import dboperations
 def exec():
    start = datetime.now()
    #api from Coingeko
-   url = "https://api.binance.com/api/v3/ticker/price?symbol=ETHUSDT"
+   url = "https://api.binance.com/api/v3/ticker/price?symbol=NEARUSDT"
    r = requests.get(url)
 
    token_price = float(r.json()["price"])
    #
-   dboperations.act_prices('WETH', 'USD', token_price)
-   print('Tiempo de ejecución WETH FIAT ' + str(datetime.now() - start))
+   dboperations.act_prices('wNEAR', 'USD', token_price)
+   print('Tiempo de ejecución wNEAR FIAT ' + str(datetime.now() - start))
 
-# exec()
+#exec()

@@ -15,4 +15,4 @@ def exec():
    dboperations.act_prices('AURORA', 'USD', token_price)
    print('Tiempo de ejecución AURORA FIAT ' + str(datetime.now() - start))
 
-# exec()
+exec()
