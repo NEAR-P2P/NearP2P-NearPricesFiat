@@ -63,7 +63,7 @@ def exec():
    # #ars
    dboperations.act_prices('NEAR', 'ARS', ars_near)
    #
-   dboperations.act_prices('NEAR', 'USD', near_price)
+   # dboperations.act_prices('NEAR', 'USD', near_price)
    print('Tiempo de ejecución NEAR FIAT ' + str(datetime.now() - start))
 
 # exec()
