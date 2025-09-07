@@ -4,6 +4,7 @@ from datetime import datetime
 import dboperations
 
 def exec():
+   print("Iniciando actualización de precios desde Ref Finance...") 
    start = datetime.now()
    #api from Coingeko
    url = "https://indexer.ref.finance/list-token-price"

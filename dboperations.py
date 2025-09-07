@@ -1,7 +1,17 @@
 import psycopg2
+from psycopg2 import sql
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 def conection():
-    conn = psycopg2.connect(host="134.209.45.101", database="p2p", user="p2p", password="p42fUEoUpfAp2b7QsibgIT4PCWrp4wCW")
+    conn = psycopg2.connect(
+        host=os.getenv("HOST"),
+        database=os.getenv("DATABASE"),
+        user=os.getenv("USER"),
+        password=os.getenv("PASSWORD")
+    )
     return conn
 
 # Store procedure para actualizar datos
@@ -40,13 +50,14 @@ def act_dolar(pamount):
             conn.close()  # Cerrando conección
     return    
 
-
-import psycopg2
-from psycopg2 import sql
-
 def act_prices_batch(data):
     # Connect to your postgres DB
-    conn = psycopg2.connect(host="134.209.45.101", database="p2p", user="p2p", password="p42fUEoUpfAp2b7QsibgIT4PCWrp4wCW")
+    conn = psycopg2.connect(
+        host=os.getenv("HOST"),
+        database=os.getenv("DATABASE"),
+        user=os.getenv("USER"),
+        password=os.getenv("PASSWORD")
+    )
 
     # Open a cursor to perform database operations
     cur = conn.cursor()

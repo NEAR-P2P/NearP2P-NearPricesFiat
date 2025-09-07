@@ -48,9 +48,9 @@ def exec():
    
    #api dolar blue
    # api from dolar today
-   urlars = "https://dolar-api-argentina.vercel.app/v1/dolares/blue"
-   rves = requests.get(urlars)
-   ars_price = float(rves.json()["venta"])
+   # urlars = "https://dolar-api-argentina.vercel.app/v1/dolares/blue"
+   # rves = requests.get(urlars)
+   # ars_price = float(rves.json()["venta"])
 
    # print(r.status_code)
 
