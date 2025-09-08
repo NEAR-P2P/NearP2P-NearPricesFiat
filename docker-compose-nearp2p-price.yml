@@ -7,7 +7,7 @@ services:
     volumes:
       - .env:/app/.env
     ports:
-      - "3010:8080"
+      - "8080:8080"
     networks:
       - app-network
 
