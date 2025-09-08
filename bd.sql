@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS public.p2p_prices
     fiat character varying COLLATE pg_catalog."default" NOT NULL,
     value real NOT NULL,
     date date NOT NULL,
-    CONSTRAINT p2p_prices_pkey PRIMARY KEY (fiat)
+    --CONSTRAINT p2p_prices_pkey PRIMARY KEY (fiat)
 )
 
 TABLESPACE pg_default;

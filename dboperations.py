@@ -9,8 +9,10 @@ def conection():
     conn = psycopg2.connect(
         host=os.getenv("HOST"),
         database=os.getenv("DATABASE"),
-        user=os.getenv("USER"),
-        password=os.getenv("PASSWORD")
+        user=os.getenv("DBUSER"),
+        password=os.getenv("DBPASSWORD"),
+        port=os.getenv("DBPORT")
+
     )
     return conn
 
@@ -33,13 +35,13 @@ def act_prices(pcrypto, pfiat, pamount):
     return
 
 # Store procedure para actualizar datos
-def act_dolar(pamount):
+def act_dolar(crypto, fiat, pamount):
     conn = conection()
     try:
      # create a cursor object for execution
      cursor = conn.cursor()
      cursor.execute("BEGIN")
-     cursor.callproc('act_dolar', (pamount, ))  # Llamado de procedimiento almacenado en postgres
+     cursor.callproc('act_prices', (crypto, fiat, pamount, ))  # Llamado de procedimiento almacenado en postgres
      cursor.execute("COMMIT")
      cursor.close  # Cerrar cursor
      # Llamado de store procedure para actualizar tabla t_historical
@@ -52,12 +54,8 @@ def act_dolar(pamount):
 
 def act_prices_batch(data):
     # Connect to your postgres DB
-    conn = psycopg2.connect(
-        host=os.getenv("HOST"),
-        database=os.getenv("DATABASE"),
-        user=os.getenv("USER"),
-        password=os.getenv("PASSWORD")
-    )
+    conn = conection()
+    # print("Connected to the database successfully")
 
     # Open a cursor to perform database operations
     cur = conn.cursor()
@@ -84,3 +82,6 @@ def act_prices_batch(data):
         # Close the cursor and connection
         cur.close()
         conn.close()    
+
+# data = []
+# act_prices_batch(data)

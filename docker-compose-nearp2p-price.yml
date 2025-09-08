@@ -1,0 +1,27 @@
+services:
+  nearp2p-prices:
+    image: metademocracia1/nearp2p-prices:latest
+    container_name: nearp2p-prices
+    restart: always
+    env_file: ".env"
+    volumes:
+      - .env:/app/.env
+    ports:
+      - "3010:8080"
+    networks:
+      - app-network
+
+  watchtower-nearp2p-prices:
+    image: containrrr/watchtower
+    container_name: watchtower-latest
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_POLL_INTERVAL=30
+    networks:
+      - app-network
+
+networks:
+  app-network:
