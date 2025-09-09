@@ -18,5 +18,10 @@ def act_prices_endpoint():
 
     return message, 200
 
+@app.get("/ping")
+def ping():
+    return "pong", 200
+
+
 if __name__ == '__main__':
     app.run(debug=True)
